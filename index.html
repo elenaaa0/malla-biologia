@@ -4,15 +4,24 @@
   <meta charset="UTF-8" />
   <title>Malla Interactiva – Licenciatura en Cs. Biológicas</title>
   <style>
-    body { font-family: sans-serif; background: #f8f8f8; padding: 20px; }
-    h1 { text-align: center; color: #2a4d69; margin-bottom: 30px; }
+    body {
+      font-family: sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      text-align: center;
+      color: #2a4d69;
+      margin-bottom: 30px;
+    }
     .contenedor-anios {
       display: flex;
       gap: 15px;
-      justify-content: center;
-      flex-wrap: nowrap;
       overflow-x: auto;
       padding-bottom: 20px;
+      /* evitar que se encoja */
+      flex-wrap: nowrap;
     }
     .anio {
       min-width: 220px;
@@ -20,6 +29,11 @@
       border-radius: 10px;
       padding: 10px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      /* que la columna crezca */
+      flex-shrink: 0;
     }
     .anio h2 {
       margin-top: 0;
@@ -240,5 +254,6 @@
 
   actualizar();
 </script>
+
 </body>
 </html>
