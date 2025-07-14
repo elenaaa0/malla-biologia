@@ -15,19 +15,52 @@
     .done { background: #b3d9b3; text-decoration: line-through; }
     .locked { background: #f2dede; color: #888; cursor: not-allowed; }
     .unlock { background: #d9edf7; }
-    .bloque { padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .bloque {
+      padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
     /* Colores por año/cuatrimestre */
-    .anio h2 {
+    .anio:nth-of-type(1) h2 {
+      background: #b2dfdb;
       padding: 5px; border-radius: 6px;
     }
-    .anio:nth-child(1) h2 { background: #b2dfdb; }
-    .anio:nth-child(2) h2 { background: #80cbc4; }
-    .anio:nth-child(3) h2 { background: #4db6ac; }
-    .anio:nth-child(4) h2 { background: #26a69a; }
-    .anio:nth-child(5) h2 { background: #0097a7; }
-    .anio:nth-child(6) h2 { background: #00838f; }
-    .anio .bloque {
-      background: rgba(0, 150, 136, 0.1);
+    .anio:nth-of-type(1) .bloque {
+      background: #b2dfdb33;
+    }
+    .anio:nth-of-type(2) h2 {
+      background: #80cbc4;
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-of-type(2) .bloque {
+      background: #80cbc433;
+    }
+    .anio:nth-of-type(3) h2 {
+      background: #4db6ac;
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-of-type(3) .bloque {
+      background: #4db6ac33;
+    }
+    .anio:nth-of-type(4) h2 {
+      background: #26a69a;
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-of-type(4) .bloque {
+      background: #26a69a33;
+    }
+    .anio:nth-of-type(5) h2 {
+      background: #0097a7;
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-of-type(5) .bloque {
+      background: #0097a733;
+    }
+    .anio:nth-of-type(6) h2 {
+      background: #00838f;
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-of-type(6) .bloque {
+      background: #00838f33;
     }
   </style>
 </head>
