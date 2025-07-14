@@ -2,140 +2,71 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Interactiva – Profesorado en Ciencias Biológicas</title>
+  <title>Malla Interactiva con Correlativas</title>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #f0f0f0;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #2a4d69;
-    }
-    .ciclo {
-      margin: 30px 0;
-    }
-    .titulo-ciclo {
-      background: #4f81c7;
-      color: white;
-      padding: 10px;
-      border-radius: 8px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .materia {
-      background: #dbe9f4;
-      border: 1px solid #a5c2dc;
-      border-radius: 8px;
-      padding: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .materia:hover {
-      background: #c0d6ec;
-    }
+    body { font-family:sans-serif; padding:20px; background:#f0f0f0; }
+    h1 { color:#2a4d69; text-align:center; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
+    button { padding:10px; border:none; border-radius:6px; cursor:pointer; transition:0.3s; }
+    .done { text-decoration:line-through; background:#b3d9b3; }
+    .locked { background:#f2dede; color:#999; cursor:not-allowed; }
+    .unlock { background:#d9edf7; }
   </style>
 </head>
 <body>
-  <h1>Malla Interactiva – Profesorado en Ciencias Biológicas</h1>
-
-  <div class="ciclo">
-    <div class="titulo-ciclo">Nivelación</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Matemática (10-02001)')">Matemática</div>
-      <div class="materia" onclick="alert('Ambientación Universitaria (10-02003)')">Ambientación Universitaria</div>
-      <div class="materia" onclick="alert('Química (10-03038)')">Química</div>
-      <div class="materia" onclick="alert('Biología (10-01828)')">Biología</div>
-    </div>
+  <h1>Mi Malla – Correlativas 🌱</h1>
+  <div class="grid">
+    <button id="10-02001">Matemática</button>
+    <button id="10-01828">Biología</button>
+    <button id="10-03003" class="locked" disabled>Matemática I</button>
+    <button id="10-03000" class="locked" disabled>Introducción a la Biología</button>
+    <button id="10-03001" class="locked" disabled>Química General</button>
+    <button id="10-03007" class="locked" disabled>Fundamentos de Evolución</button>
   </div>
 
-  <div class="ciclo">
-    <div class="titulo-ciclo">Primer año – 1° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Matemática I (10-03002)')">Matemática I</div>
-      <div class="materia" onclick="alert('Epistemología y Metodología de la Ciencia (10-03003)')">Epistemología y Metodología</div>
-      <div class="materia" onclick="alert('Introducción a la Biología (10-03000)')">Introducción a la Biología</div>
-      <div class="materia" onclick="alert('Química General (10-03001)')">Química General</div>
-    </div>
-  </div>
-  <div class="ciclo">
-    <div class="titulo-ciclo">Primer año – 2° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Fundamentos de Evolución (10-03007)')">Fundamentos de Evolución</div>
-      <div class="materia" onclick="alert('Química Orgánica (10-01606)')">Química Orgánica</div>
-      <div class="materia" onclick="alert('Matemática II (10-03004)')">Matemática II</div>
-      <div class="materia" onclick="alert('Física I (10-03006)')">Física I</div>
-      <div class="materia" onclick="alert('Inglés (10-03008)')">Inglés</div>
-    </div>
-  </div>
+<script>
+  const correlativas = {
+    "10-03003": ["10-02001"],
+    "10-03000": ["10-01828"],
+    "10-03001": ["10-03038"],
+    "10-03007": ["10-03000"]
+  };
+  const all = ["10-02001","10-01828","10-03003","10-03000","10-03001","10-03007"];
+  const btn = {};
+  all.forEach(id => btn[id] = document.getElementById(id));
+  
+  function guardar() { localStorage.setItem("malla", JSON.stringify(done)); }
+  let done = JSON.parse(localStorage.getItem("malla")||"{}");
+  
+  function actualizar() {
+    all.forEach(id => {
+      if(done[id]) {
+        btn[id].classList.add("done");
+        btn[id].disabled = false;
+      } else {
+        btn[id].classList.remove("done");
+        btn[id].disabled = false;
+      }
+      if(correlativas[id]) {
+        const ok = correlativas[id].every(c => done[c]);
+        if(!ok && !done[id]) {
+          btn[id].classList.add("locked");
+          btn[id].disabled = true;
+        } else {
+          btn[id].classList.remove("locked");
+          if(!done[id]) btn[id].classList.add("unlock");
+        }
+      }
+    });
+  }
+  
+  all.forEach(id => btn[id].addEventListener("click", () =>{
+    done[id] = !done[id];
+    guardar();
+    actualizar();
+  }));
 
-  <div class="ciclo">
-    <div class="titulo-ciclo">Segundo año – 1° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Química Biológica (10-03010)')">Química Biológica</div>
-      <div class="materia" onclick="alert('Bioestadística I (10-03009)')">Bioestadística I</div>
-      <div class="materia" onclick="alert('Física II (10-03011)')">Física II</div>
-      <div class="materia" onclick="alert('Módulo de Informática (10-01736)')">Módulo de Informática</div>
-      <div class="materia" onclick="alert('Ambiente Físico (10-01605)')">Ambiente Físico</div>
-    </div>
-  </div>
-  <div class="ciclo">
-    <div class="titulo-ciclo">Segundo año – 2° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Bioestadística II (10-03017)')">Bioestadística II</div>
-      <div class="materia" onclick="alert('Morfología Vegetal (10-03015)')">Morfología Vegetal</div>
-      <div class="materia" onclick="alert('Biología Celular y Molecular (10-03014)')">Biología Celular y Molecular</div>
-      <div class="materia" onclick="alert('Morfología Animal (10-03016)')">Morfología Animal</div>
-    </div>
-  </div>
-
-  <div class="ciclo">
-    <div class="titulo-ciclo">Tercer año – 1° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Diversidad Biológica II (10-03021)')">Diversidad Biológica II</div>
-      <div class="materia" onclick="alert('Fisiología Animal (10-03019)')">Fisiología Animal</div>
-      <div class="materia" onclick="alert('Diversidad Biológica I (10-03020)')">Diversidad Biológica I</div>
-      <div class="materia" onclick="alert('Fisiología Vegetal (10-03018)')">Fisiología Vegetal</div>
-    </div>
-  </div>
-  <div class="ciclo">
-    <div class="titulo-ciclo">Tercer año – 2° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Genética (10-01611)')">Genética</div>
-      <div class="materia" onclick="alert('Diversidad Biológica III')">Diversidad Biológica III</div>
-      <div class="materia" onclick="alert('Teoría y Métodos Taxonómicos (10-03026)')">Teoría y Métodos Taxonómicos</div>
-      <div class="materia" onclick="alert('Ecología y Conservación (10-03024)')">Ecología y Conservación</div>
-      <div class="materia" onclick="alert('Diversidad Biológica IV (10-03023)')">Diversidad Biológica IV</div>
-    </div>
-  </div>
-
-  <div class="ciclo">
-    <div class="titulo-ciclo">Cuarto año – 1° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Problemática Ambiental (10-03039)')">Problemática Ambiental</div>
-      <div class="materia" onclick="alert('Microbiología (10-01619)')">Microbiología</div>
-      <div class="materia" onclick="alert('Entomología (10-01647)')">Entomología</div>
-      <div class="materia" onclick="alert('Genética de Poblaciones y Evolución (10-01615)')">Genética de Poblaciones</div>
-      <div class="materia" onclick="alert('Biogeografía (10-01630)')">Biogeografía</div>
-    </div>
-  </div>
-  <div class="ciclo">
-    <div class="titulo-ciclo">Cuarto año – 2° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Legislación en Biología (10-03040)')">Legislación en Biología</div>
-    </div>
-  </div>
-
-  <div class="ciclo">
-    <div class="titulo-ciclo">Quinto año – 4° Cuatrimestre</div>
-    <div class="grid">
-      <div class="materia" onclick="alert('Tesina (3032)')">Tesina</div>
-    </div>
-  </div>
+  actualizar();
+</script>
 </body>
 </html>
