@@ -1,66 +1,194 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Malla Interactiva con Correlativas</title>
+  <meta charset="UTF-8" />
+  <title>Malla Interactiva Completa</title>
   <style>
-    body { font-family:sans-serif; padding:20px; background:#f0f0f0; }
-    h1 { color:#2a4d69; text-align:center; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; }
-    button { padding:10px; border:none; border-radius:6px; cursor:pointer; transition:0.3s; }
-    .done { text-decoration:line-through; background:#b3d9b3; }
-    .locked { background:#f2dede; color:#999; cursor:not-allowed; }
-    .unlock { background:#d9edf7; }
+    body { font-family: sans-serif; background: #f8f8f8; padding: 20px; }
+    h1, h2 { text-align: center; color: #2a4d69; }
+    .anio { margin-top: 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+    button {
+      padding: 10px; border: none; border-radius: 8px;
+      cursor: pointer; transition: 0.3s; font-weight: bold;
+    }
+    .done { background: #b3d9b3; text-decoration: line-through; }
+    .locked { background: #f2dede; color: #888; cursor: not-allowed; }
+    .unlock { background: #d9edf7; }
+    .bloque { padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    /* Colores por año/cuatrimestre */
+    .anio h2 {
+      padding: 5px; border-radius: 6px;
+    }
+    .anio:nth-child(1) h2 { background: #b2dfdb; }
+    .anio:nth-child(2) h2 { background: #80cbc4; }
+    .anio:nth-child(3) h2 { background: #4db6ac; }
+    .anio:nth-child(4) h2 { background: #26a69a; }
+    .anio:nth-child(5) h2 { background: #0097a7; }
+    .anio:nth-child(6) h2 { background: #00838f; }
+    .anio .bloque {
+      background: rgba(0, 150, 136, 0.1);
+    }
   </style>
 </head>
 <body>
-  <h1>Mi Malla – Correlativas 🌱</h1>
-  <div class="grid">
+<h1>Malla Interactiva – Profesorado en Cs. Biológicas</h1>
+
+<div class="anio">
+  <h2>Nivelación</h2>
+  <div class="grid bloque">
     <button id="10-02001">Matemática</button>
+    <button id="10-02003">Ambientación Universitaria</button>
+    <button id="10-03038">Química</button>
     <button id="10-01828">Biología</button>
-    <button id="10-03003" class="locked" disabled>Matemática I</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>1° Año - 1° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03002" class="locked" disabled>Matemática I</button>
+    <button id="10-03003">Epistemología</button>
     <button id="10-03000" class="locked" disabled>Introducción a la Biología</button>
     <button id="10-03001" class="locked" disabled>Química General</button>
-    <button id="10-03007" class="locked" disabled>Fundamentos de Evolución</button>
   </div>
+</div>
+
+<div class="anio">
+  <h2>1° Año - 2° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03007" class="locked" disabled>Fundamentos de Evolución</button>
+    <button id="10-01606" class="locked" disabled>Química Orgánica</button>
+    <button id="10-03004">Matemática II</button>
+    <button id="10-03006">Física I</button>
+    <button id="10-03008">Inglés</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>2° Año - 1° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03010" class="locked" disabled>Química Biológica</button>
+    <button id="10-03009" class="locked" disabled>Bioestadística I</button>
+    <button id="10-03011" class="locked" disabled>Física II</button>
+    <button id="10-01736">Módulo de Informática</button>
+    <button id="10-01605">Ambiente Físico</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>2° Año - 2° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03017" class="locked" disabled>Bioestadística II</button>
+    <button id="10-03015" class="locked" disabled>Morfología Vegetal</button>
+    <button id="10-03014" class="locked" disabled>Biología Celular y Molecular</button>
+    <button id="10-03016" class="locked" disabled>Morfología Animal</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>3° Año - 1° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03021" class="locked" disabled>Diversidad Biológica II</button>
+    <button id="10-03019" class="locked" disabled>Fisiología Animal</button>
+    <button id="10-03020" class="locked" disabled>Diversidad Biológica I</button>
+    <button id="10-03018" class="locked" disabled>Fisiología Vegetal</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>3° Año - 2° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-01611" class="locked" disabled>Genética</button>
+    <button id="10-03026" class="locked" disabled>Teoría y Métodos Taxonómicos</button>
+    <button id="10-03024" class="locked" disabled>Ecología y Conservación</button>
+    <button id="10-03023" class="locked" disabled>Diversidad Biológica IV</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>4° Año - 1° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03039" class="locked" disabled>Problemática Ambiental</button>
+    <button id="10-01619" class="locked" disabled>Microbiología</button>
+    <button id="10-01647" class="locked" disabled>Entomología</button>
+    <button id="10-01615" class="locked" disabled>Genética de Poblaciones y Evolución</button>
+    <button id="10-01630" class="locked" disabled>Biogeografía</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>4° Año - 2° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="10-03040" class="locked" disabled>Legislación en Biología</button>
+  </div>
+</div>
+
+<div class="anio">
+  <h2>5° Año - 4° Cuatrimestre</h2>
+  <div class="grid bloque">
+    <button id="3032" class="locked" disabled>Tesina</button>
+  </div>
+</div>
 
 <script>
   const correlativas = {
-    "10-03003": ["10-02001"],
+    "10-03002": ["10-02001"],
     "10-03000": ["10-01828"],
     "10-03001": ["10-03038"],
-    "10-03007": ["10-03000"]
+    "10-03007": ["10-03000"],
+    "10-01606": ["10-03001"],
+    "10-03010": ["10-01606"],
+    "10-03009": ["10-03004"],
+    "10-03011": ["10-03006"],
+    "10-03014": ["10-03000"],
+    "10-03016": ["10-03000"],
+    "10-03021": ["10-03015"],
+    "10-03019": ["10-03016"],
+    "10-03020": ["10-03014"],
+    "10-03018": ["10-03015"],
+    "10-03026": ["10-03023"],
+    "10-01619": ["10-03014"],
+    "10-01615": ["10-01611"],
+    "10-03040": ["10-03039"],
+    "3032": ["10-03040"]
   };
-  const all = ["10-02001","10-01828","10-03003","10-03000","10-03001","10-03007"];
+  const all = [
+    "10-02001","10-02003","10-03038","10-01828",
+    "10-03002","10-03003","10-03000","10-03001",
+    "10-03007","10-01606","10-03004","10-03006","10-03008",
+    "10-03010","10-03009","10-03011","10-01736","10-01605",
+    "10-03017","10-03015","10-03014","10-03016",
+    "10-03021","10-03019","10-03020","10-03018",
+    "10-01611","10-03026","10-03024","10-03023",
+    "10-03039","10-01619","10-01647","10-01615","10-01630",
+    "10-03040","3032"
+  ];
   const btn = {};
   all.forEach(id => btn[id] = document.getElementById(id));
-  
+
   function guardar() { localStorage.setItem("malla", JSON.stringify(done)); }
   let done = JSON.parse(localStorage.getItem("malla")||"{}");
-  
+
   function actualizar() {
     all.forEach(id => {
+      btn[id].classList.remove("done", "locked", "unlock");
+      btn[id].disabled = false;
       if(done[id]) {
         btn[id].classList.add("done");
-        btn[id].disabled = false;
-      } else {
-        btn[id].classList.remove("done");
-        btn[id].disabled = false;
-      }
-      if(correlativas[id]) {
+      } else if(correlativas[id]) {
         const ok = correlativas[id].every(c => done[c]);
-        if(!ok && !done[id]) {
+        if(!ok) {
           btn[id].classList.add("locked");
           btn[id].disabled = true;
         } else {
-          btn[id].classList.remove("locked");
-          if(!done[id]) btn[id].classList.add("unlock");
+          btn[id].classList.add("unlock");
         }
       }
     });
   }
-  
-  all.forEach(id => btn[id].addEventListener("click", () =>{
+
+  all.forEach(id => btn[id].addEventListener("click", () => {
     done[id] = !done[id];
     guardar();
     actualizar();
